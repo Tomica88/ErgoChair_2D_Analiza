@@ -29,13 +29,13 @@ const Preview = ({ selectedProduct, wheelColor, seatColor, frameColor }: Preview
     const scene = new THREE.Scene();
     let sceneWidth = window.innerWidth;
     let sceneHeight = isMobile
-      ? window.innerHeight / 2
-      : window.innerHeight;
+      ? (window.visualViewport?.height ?? window.innerHeight) / 2
+      : (window.visualViewport?.height ?? window.innerHeight);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(sceneWidth, sceneHeight);
-    renderer.setClearColor(0x0c0a09, 1); // Transparent background
+    renderer.setClearColor(0x0c0a09, 1); // Opaque background
 
     // Append the renderer's canvas to the DOM
     const canvas = renderer.domElement;
@@ -105,16 +105,12 @@ const Preview = ({ selectedProduct, wheelColor, seatColor, frameColor }: Preview
             }
           });
 
-          // Add the new model before removing the old one to ensure there’s no gap
+          // Add the new model before removing the old one to ensure continuity
           scene.add(newModel);
-
-          // Remove and dispose the previous model (if any) once the new one is ready
           if (modelRef.current) {
             scene.remove(modelRef.current);
             disposeModel(modelRef.current);
           }
-
-          // Update the model reference to the new model and compile the scene
           modelRef.current = newModel;
           renderer.compile(scene, camera);
           setIsLoading(false);
@@ -163,11 +159,29 @@ const Preview = ({ selectedProduct, wheelColor, seatColor, frameColor }: Preview
       renderer.setPixelRatio(window.devicePixelRatio);
     };
 
+    // Improved debounce logic: only trigger a resize if change is significant
     let resizeTimeout: ReturnType<typeof setTimeout>;
-    window.addEventListener("resize", () => {
+    let currentWidth = window.innerWidth;
+    let currentHeight = window.visualViewport?.height ?? window.innerHeight;
+    const threshold = 50; // Only trigger if width/height changes more than 50px
+
+    const resizeListener = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(resizeHandler, 100);
-    });
+      resizeTimeout = setTimeout(() => {
+        const newWidth = window.innerWidth;
+        const newHeight = window.visualViewport?.height ?? window.innerHeight;
+        if (
+          Math.abs(newWidth - currentWidth) > threshold ||
+          Math.abs(newHeight - currentHeight) > threshold
+        ) {
+          currentWidth = newWidth;
+          currentHeight = newHeight;
+          resizeHandler();
+        }
+      }, 200);
+    };
+
+    window.addEventListener("resize", resizeListener);
 
     // Main animation loop
     const animate = () => {
@@ -208,7 +222,7 @@ const Preview = ({ selectedProduct, wheelColor, seatColor, frameColor }: Preview
       canvas.removeEventListener("mousedown", onMouseDown);
       canvas.removeEventListener("mouseup", onMouseUp);
       canvas.removeEventListener("mouseleave", onMouseLeave);
-      window.removeEventListener("resize", resizeHandler);
+      window.removeEventListener("resize", resizeListener);
       if (controls) {
         controls.dispose();
       }
