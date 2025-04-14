@@ -9,6 +9,7 @@ import Reviews from "@/components/sections/Reviews";
 import Sale from "@/components/sections/Sale";
 import ThreeCanvas from "./ThreeCanvas"; // Import the ThreeCanvas component
 import StartWindow from "@/components/StartWindow";
+import ImageCarousel from "@/components/sections/ImageSlider";
 
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <div className="text-slate-100">
         <Navbar />
         <Hero />
+        <ImageCarousel />
         <Products />
         <Features />
         <Reviews />

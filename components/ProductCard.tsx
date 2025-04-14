@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/*import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 import AnimatedContainer from './AnimatedContainer';
 
@@ -96,7 +96,6 @@ const DropdownRadio: React.FC<DropdownRadioProps> = ({
         type="button"
         className={`${buttonTextColor} ${selectedColor} hover:opacity-90 focus:ring-4 focus:outline-none rounded-full focus:ring-stone-950 text-sm px-4 py-2 text-center inline-flex items-center`}
       >
-        {/* Always display the label regardless of selection */}
         {label}
         <svg
           className="w-2.5 h-2.5 ml-2"
@@ -126,7 +125,6 @@ const DropdownRadio: React.FC<DropdownRadioProps> = ({
             return (
               <li key={index}>
                 <div className={`flex items-center height-20 ${optionColorClass} hover:bg-gray-100`}>
-                  {/* Radio button with removed dot */}
                   <input
                     type="radio"
                     id={`${name}-${index}`}
@@ -136,7 +134,6 @@ const DropdownRadio: React.FC<DropdownRadioProps> = ({
                     onChange={() => handleOptionSelect(option)}
                     className="w-4 h-8 border-gray-300 focus:ring-blue-500 appearance-none"
                   />
-                  {/* Option text hidden using opacity-0 to keep clickability */}
                   <label
                     htmlFor={`${name}-${index}`}
                     className="ml-2 block opacity-0 w-full h-10 cursor-pointer"
@@ -204,7 +201,6 @@ const ProductCard = ({
             </div>
           </div>
         </div>
-        {/* Dropdown button row */}
         <div className="flex justify-between px-3">
           <DropdownRadio
             label="Nasloni"
@@ -253,4 +249,40 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default ProductCard;*/
+
+import Image from 'next/image';
+import React from 'react'
+import AnimatedContainer from './AnimatedContainer';
+
+interface ProductCardProps{
+    index: number;
+    imgSrc: string;
+    title: string;
+    price: number;
+    isActive: boolean;
+    onClick: () => void;
+    onNakupClick: () => void;
+}
+
+const ProductCard = ({index, imgSrc, title, price, isActive, onClick, onNakupClick}:ProductCardProps) => {
+  return (
+    <div onClick={onClick} className={`transition-transform duration-300 ease-in-out hover:scale-105 ${isActive ? 'scale-105' :''}`}>
+        <AnimatedContainer delay={index * 0.2} styles={`w-80 h-32 flex flex-row gap-4 rounded-xl transition-all duration-300 cursor-pointer ${isActive ? 'bg-gradient' : 'bg-stone-800'}`}>
+            <Image src={imgSrc} alt='product' width={128} height={128} unoptimized={true} className='rounded-xl' />
+            <div className='flex flex-col justify-between px-4 py-6 text-slate-200'>
+                <h3 className='text-lg font-semibold'>{title}</h3>
+                <div className='flex flex-row items-center'>
+                    <p className={`pr-4 ${isActive ? 'text-black' : 'text-slate-400'}`}>€{price}</p>
+                    <div onClick={(e) => {
+                e.stopPropagation(); // Prevents the outer onClick from firing
+                onNakupClick();
+              }} className='w-16 flex justify-center py-1 text-sm border-[1px] rounded-xl hover:bg-stone-200 transition duration-300 hover:text-stone-800'>Nakup</div>
+                </div>
+            </div>
+        </AnimatedContainer>
+    </div>
+  )
+}
+
+export default ProductCard

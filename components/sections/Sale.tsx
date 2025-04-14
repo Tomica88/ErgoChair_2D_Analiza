@@ -96,7 +96,7 @@ const Sale = () => {
     <div className='max-w-[1536px] flex flex-col items-center gap-8 pt-32 mx-auto'>
       <h2 className='text-4xl md:text-5xl font-bold text-center'>Omejena prodaja <br/> na voljo</h2>
       <p className='uppercase text-sm font-bold bg-gradient bg-clip-text text-transparent'>popusti do 30%</p>
-      <Link href='#catalog' className='w-36 flex flex-col items-center py-3 rounded-xl text-xs bg-gradient'>
+      <Link href='#slider' className='w-36 flex flex-col items-center py-3 rounded-xl text-xs bg-gradient'>
       Naroči ErgoChair
       </Link>
     </div>

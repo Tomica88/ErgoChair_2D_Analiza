@@ -25,7 +25,29 @@ const products = [
     title: "Omejena izdaja",
     price: 219.99,
     modelSrc: "/assets/chair3.gltf",
-  }
+  },
+  {
+    id: "4",
+    imgSrc: "/assets/chair4.png",
+    title: "Modra izdaja",
+    price: 219.99,
+    modelSrc: "/assets/chair2.gltf",
+  },
+  {
+    id: "5",
+    imgSrc: "/assets/chair5.png",
+    title: "Rdeča izdaja",
+    price: 219.99,
+    modelSrc: "/assets/chair2.gltf",
+  },
+  {
+    id: "6",
+    imgSrc: "/assets/chair6.png",
+    title: "Oranžna izdaja",
+    price: 209.99,
+    modelSrc: "/assets/chair2.gltf",
+  },
+  
 ];
 
 export type ProductType = {
@@ -76,7 +98,7 @@ const Catalog = ({
         <span className='animate-pulse'>/ </span>
         artikli
       </h2>
-      <div className='w-full flex flex-col items-center lg:flex-row gap-6 mx-auto'>
+      <div className='w-full flex flex-col md:flex-wrap items-center lg:flex-row gap-6 mx-auto'>
         {products.map((product, index) => (
           <ProductCard
             key={index}

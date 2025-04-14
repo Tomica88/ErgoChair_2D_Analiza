@@ -28,3 +28,17 @@ html, body {
   --animate-ping: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite
   
 }
+
+.carousel-container {
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-slide {
+  outline: none
+}
+
+@import "slick-carousel/slick/slick.css";
+
+@import "slick-carousel/slick/slick-theme.css";
