@@ -11,6 +11,11 @@
 
 html, body {
   height: 100%;
+  scroll-behavior: smooth !important; /* Force smooth scrolling */
+}
+
+html, body {
+  height: 100%;
 }
 
 .bg-gradient{
@@ -37,6 +42,13 @@ html, body {
 
 .slick-slide {
   outline: none
+}
+
+/* Fix for some browsers that ignore smooth scrolling */
+@media screen and (prefers-reduced-motion: no-preference) {
+  html, body {
+    scroll-behavior: smooth;
+  }
 }
 
 @import "slick-carousel/slick/slick.css";
