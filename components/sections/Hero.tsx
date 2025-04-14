@@ -36,7 +36,7 @@ const Hero = () => {
             <TypingText text="vaše udobje." textStyles="text-4xl md:text-6xl font-bold"/>
           </div>
           <p className='text-slate-400 font-semibold text-sm md:text-base'>Odkrijte stol, oblikovan tako za stil kot za udobje, ki zagotavlja neprimerljivo ergonomijo in stil za vaše vsakodnevne potrebe.</p>
-          <p className='text-slate-400 font-semibold text-sm md:text-base'>Spletna trgovina ponuja 6 različnih izdaj ErgoChair pisarniških stolov za vsak okus</p>
+          <p className='text-slate-400 font-semibold text-sm md:text-base'>Spletna trgovina ponuja 6 različnih izdaj ErgoChair pisarniških stolov za vsak okus.</p>
           <div className='flex flex-row gap-6'>
             <Link href='#slider' className='w-36 flex justify-center py-3 rounded-xl text-xs bg-gradient'>Nakup stola</Link>
             <Link href='#features' className='w-36 flex justify-center py-3 rounded-xl text-xs border border-white'>Poglej Več</Link>
