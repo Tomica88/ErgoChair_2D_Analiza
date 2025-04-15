@@ -7,26 +7,7 @@ import { MdKeyboard, MdKeyboardDoubleArrowDown } from "react-icons/md"
 import TypingText from "../typingText"
 
 const Hero = () => {
-  /*useEffect(() => {
-    const handlescroll = () =>{
-      const heroElement = document.getElementById('hero');
-      if(heroElement){
-        const rect = heroElement.getBoundingClientRect();
-        const isInView = rect.top >= 84 && rect.bottom >= window.innerHeight;
-        document.body.style.overflow = isInView ? 'hidden' : 'auto'
-      }
-    }
 
-    window.addEventListener("scroll", handlescroll)
-
-    handlescroll();
-
-    return() => {
-      window.removeEventListener("scroll", handlescroll)
-      document.body.style.overflow = 'auto'
-    }
-
-  },[])*/
   return (
     <div id="hero" className="relative h-svh max-w-5xl mx-auto mt-auto flex flex-col p-4 pt-0 sm:pt-8 lg:pt-8 md:p-16">
       <div className="flex flex-col md:flex-col items-center relative">

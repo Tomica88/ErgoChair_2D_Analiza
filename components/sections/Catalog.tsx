@@ -113,62 +113,6 @@ const Catalog = ({
         ))}
       </div>
 
-      {/*<AnimatedContainer delay={0.5} styles="z-1">
-        <div className='bg-stone-800 rounded-xl p-2 mt-6 lg:flex justify-between flex-1 gap-4 text-center w-full'>
-
-        <div className="w-full">
-            <p className="text-white font-bold text-sm mb-2 mt-2">O G R O D J E</p>
-            <div className="flex gap-3 justify-center mb-1">
-              {['#e7e5e4', '#1c1917', '#b91c1c', '#a16207', '#1e3a8a'].map((color) => (
-                <button
-                  key={color}
-                  onClick={() => {
-                    setSelectedFrameColor(color);
-                    changeFrameColor(color);
-                  }}
-                  className={`${colorButtonClass(selectedFrameColor, color)} bg-[${color}]`}
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="w-full">
-            <p className="text-white font-bold text-sm mb-2 mt-2">N O G E</p>
-            <div className="flex gap-3 justify-center mb-1">
-              {['#e7e5e4', '#1c1917', '#b91c1c', '#a16207', '#1e3a8a'].map((color) => (
-                <button
-                  key={color}
-                  onClick={() => {
-                    setSelectedSeatColor(color);
-                    changeSeatColor(color);
-                  }}
-                  className={`${colorButtonClass(selectedSeatColor, color)} bg-[${color}]`}
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="w-full">
-            <p className="text-white font-bold text-sm mb-2 mt-2">N A S L O N A</p>
-            <div className="flex gap-3 justify-center mb-3 lg:mb-1">
-              {['#e7e5e4', '#1c1917', '#b91c1c', '#a16207', '#1e3a8a'].map((color) => (
-                <button
-                  key={color}
-                  onClick={() => {
-                    setSelectedWheelColor(color);
-                    changeWheelColor(color);
-                  }}
-                  className={`${colorButtonClass(selectedWheelColor, color)} bg-[${color}]`}
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </AnimatedContainer>*/}
-
       {isWindowOpen && <Window toggleWindow={toggleWindow} />}
 
     </div>
