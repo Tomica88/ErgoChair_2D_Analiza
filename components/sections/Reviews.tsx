@@ -6,13 +6,13 @@ const reviews = [
   {
     name: "Stanko S.",
     imgSrc: "/assets/reviews/rev1.jpg",
-    text: "Odlična izkušnja! Konfigurator je enostaven za uporabo in stol sem prilagodil popolnoma po svojih željah.",
+    text: "Odlična izkušnja! Trgovina je enostavna za uporabo in stol sem naročil že danes.",
     stars: 4.2
   },
   {
     name: "Ana J.",
     imgSrc: "/assets/reviews/rev2.jpg",
-    text: "Super trgovina! Takoj vidiš, kaj dobiš. Stol sem sestavila sama, kot sem si ga zamislila.",
+    text: "Super trgovina! Dostava je bila hitra, izdelek pa je točno tak, kot sem pričakovala.",
     stars: 4.9
   },
   {
@@ -24,13 +24,13 @@ const reviews = [
   {
     name: "Alen G.",
     imgSrc: "/assets/reviews/rev4.jpg",
-    text: "Profesionalna spletna trgovina s super funkcijo 3D prikaza. Stol sem sestavil brez težav in je čudovit!",
+    text: "Zelo zadovoljna izkušnja! Stol je kakovosten in všeč mi je celotna izkušnja nakupa.",
     stars: 4.7
   },
   {
     name: "Dominik M.",
     imgSrc: "/assets/reviews/rev5.jpg",
-    text: "Končno trgovina, kjer vidiš, kaj kupuješ! 3D pogled res pomaga pri odločitvi.",
+    text: "Končno trgovina, kjer vse deluje, kot mora! Hitra obdelava naročila in super podpora.",
     stars: 4.9
   },
   {
@@ -42,7 +42,7 @@ const reviews = [
   {
     name: "David B.",
     imgSrc: "/assets/reviews/rev7.jpg",
-    text: "Izjemno zadovoljen! Stol sem si lahko prilagodil do potankosti, kar drugje ni možno.",
+    text: "Super kakovost! Stol je udoben in vreden cene.",
     stars: 4.8
   },
   {
