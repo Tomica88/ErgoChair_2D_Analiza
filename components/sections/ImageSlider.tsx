@@ -1,9 +1,18 @@
-import React from 'react';
+// ImageSlider.tsx
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from 'react-icons/fa';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-const ImageSlider = () => {
-  // Array of image URLs (update with your actual assets)
+interface ImageSliderProps {
+  selectedIndex: number;
+  sliderRef: React.RefObject<Slider>;
+}
+
+const ImageSlider: React.FC<ImageSliderProps> = ({ selectedIndex, sliderRef }) => {
+  const [activeSlide, setActiveSlide] = useState(selectedIndex);
+  
   const images = [
     '/assets/slider1.png',
     '/assets/slider2.png',
@@ -14,59 +23,59 @@ const ImageSlider = () => {
   ];
 
   const settings = {
-    infinite: true,               // Enable infinite looping
-    speed: 500,                   // Transition speed (ms)
-    slidesToShow: 3,              // Number of images to show at once on desktop
-    slidesToScroll: 1,            // Number of images to scroll at a time
-    autoplay: true,               // Enable auto-scrolling
-    autoplaySpeed: 3000,          // Auto-scroll interval (ms)
-    cssEase: "ease-in-out",       // Use ease-in-out for smooth transition
-    swipeToSlide: true,           // Allow swiping
-    draggable: true,              // Allow dragging
-    pauseOnHover: false,          // Do not pause on hover
-    centerMode: true,             // Enable center mode (offset effect)
-    centerPadding: '10%',         // Adjust the padding to control how much of adjacent slides are visible
-    arrows: false,                // Remove arrow buttons
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: false,
+    swipeToSlide: true,
+    draggable: true,
+    pauseOnHover: false,
+    centerMode: true,
+    centerPadding: '10%',
+    arrows: false,
+    beforeChange: (current: number, next: number) => {
+      setActiveSlide(next);
+    },
     responsive: [
       {
-        breakpoint: 768,          // For mobile screens...
+        breakpoint: 768,
         settings: {
-          slidesToShow: 1,        // ...show 1 slide at a time
-          centerPadding: '0%'     // Also apply offset on mobile (adjust as needed)
-        }
-      }
-    ]
+          slidesToShow: 1,
+          centerPadding: '0%',
+        },
+      },
+    ],
   };
 
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(selectedIndex);
+      setActiveSlide(selectedIndex);
+    }
+  }, [selectedIndex, sliderRef]);
+
   return (
-    <div id="slider" className="carousel-container">
+    <div id="slider" className="relative w-full overflow-hidden my-8">
+      <FaRegArrowAltCircleLeft className="absolute left-1/10 top-1/2 transform -translate-y-1/2 w-8 h-8 lg:w-15 lg:h-15 z-10 opacity-70 pointer-events-none text-3xl animate-ping" />
+      <FaRegArrowAltCircleRight className="absolute right-1/10  top-1/2 transform -translate-y-1/2 w-8 h-8 lg:w-15 lg:h-15 z-10 opacity-70 pointer-events-none text-3xl animate-ping" />
 
-      <FaRegArrowAltCircleLeft className="md:flex absolute w-10 h-10 lg:w-15 lg:h-15 opacity-70 animate-ping left-1/11 mt-30 pointer-events-none" />
-              <FaRegArrowAltCircleRight className="md:flex absolute w-10 h-10 lg:w-15 lg:h-15 opacity-70 animate-ping right-1/11 mt-30 pointer-events-none" />
-
-      <Slider {...settings}>
-        {images.map((src, index) => (
-          <div key={index}>
-            <img
-              src={src}
-              alt={`Slide ${index}`}
-              style={{ 
-                width: '100%', 
-                height: 'auto', 
-                border: 'none', 
-                outline: 'none',
-                userSelect: 'none',
-                WebkitUserSelect: 'none',
-                MozUserSelect: 'none',
-                msUserSelect: 'none',
-                WebkitTapHighlightColor: 'transparent',
-                pointerEvents: 'none'
-              }}
-              tabIndex={-1}
-            />
-          </div>
-        ))}
-      </Slider>
+      <div className="max-w-full mx-auto">
+        <Slider ref={sliderRef} {...settings}>
+          {images.map((src, i) => (
+            <div key={i} className="px-2">
+               <div className={`transition-all duration-300 ${activeSlide === i ? 'p-1 md:bg-stone-900 rounded-4xl transform scale-105' : ''}`}>
+                <img
+                  src={src}
+                  alt={`Slide ${i + 1}`}
+                  className="w-full h-auto rounded-lg select-none"
+                  draggable={false}
+                />
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
